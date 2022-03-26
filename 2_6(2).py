@@ -1,15 +1,10 @@
-na_me = ""
-price = 0
-number = 0
-un_it = ""
 my_list = []
 length = int(input("Введите количество товара -> "))
 for i in range(length):
-    na_me = input("Введите название товара -> ")
-    price = int(input(f"Введите стоимость товара с именем {na_me} -> "))
-    number = int(input(f"Введите количество товара с именем {na_me} -> "))
-    un_it = input(f"Введите в чем измеряется количество товара с именем {na_me} -> ")
-    my_list.append((i + 1, {"название": na_me, "цена": price, "количество": number, "ед": un_it}))
+    my_list.append((i + 1, {"название": input("Введите название товара -> "),
+                            "цена": int(input(f"Введите стоимость товара -> ")),
+                            "количество": int(input(f"Введите количество товара -> ")),
+                            "ед": input(f"Введите в чем измеряется количество товара -> ")}))
 print(my_list)
 lis_name = []
 lis_price = []
