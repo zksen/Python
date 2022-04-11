@@ -22,6 +22,5 @@ with open("text_7.txt", "r", encoding="utf-8") as my_file:
                {"average_profit": av / el}]
     my_file.close()
 with open("text_77.json", "a", encoding="utf-8") as my_file_2:
-    my_file_2.write("\n")
     json.dump(my_list, my_file_2, indent=4, ensure_ascii=False)
-    my_file.close()
+    my_file_2.close()
