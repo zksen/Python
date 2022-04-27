@@ -2,7 +2,7 @@ import cProfile
 
 
 def alg1(n):
-    """Первый алгоритм"""
+    """Первый алгоритм O(n^2)"""
 
     lst = []
     k = 0
@@ -17,14 +17,6 @@ def alg1(n):
             k = 0
     return lst[len(lst) - 1]
 
-# cProfile.run('alg1(100)')
-# 30 function calls in 0.000 seconds
-#  1    0.000    0.000    0.000    0.000 <string>:1(<module>)
-#  1    0.000    0.000    0.000    0.000 les_4_task_2.py:4(alg1)
-#  1    0.000    0.000    0.000    0.000 {built-in method builtins.exec}
-#  1    0.000    0.000    0.000    0.000 {built-in method builtins.len}
-# 25    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
-#  1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
 
 # "les_4_task_2.alg1(10)"
 # 1000 loops, best of 5: 2.47 usec per loop
@@ -41,28 +33,24 @@ def alg1(n):
 # "les_4_task_2.alg1(1000)"
 # 1000 loops, best of 5: 1.04 msec per loop
 
+# "les_4_task_2.alg1(2000)"
+# 1000 loops, best of 5: 5.35 msec per loop
+
+# "les_4_task_2.alg1(5000)"
+# 1000 loops, best of 5: 26.5 msec per loop
 
 def alg2(n):
-    """Второй алгоритм"""
+    """Второй алгоритм O(nlog(log(n)))"""
 
     lst = list(range(n + 1))
     lst[1] = 0
     for i in lst:
         if i > 1:
-            for j in range(i + i, len(lst), i):
+            for j in range(2*i, len(lst), i):
                 lst[j] = 0
     lst1 = [x for x in lst if x != 0]
     return lst1[len(lst1) - 1]
 
-
-# cProfile.run('alg2(100)')
-# 31 function calls in 0.000 seconds
-#  1    0.000    0.000    0.000    0.000 <string>:1(<module>)
-#  1    0.000    0.000    0.000    0.000 les_4_task_2.py:45(alg2)
-#  1    0.000    0.000    0.000    0.000 les_4_task_2.py:54(<listcomp>)
-#  1    0.000    0.000    0.000    0.000 {built-in method builtins.exec}
-# 26    0.000    0.000    0.000    0.000 {built-in method builtins.len}
-#  1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
 
 
 # "les_4_task_2.alg2(10)"
@@ -79,3 +67,17 @@ def alg2(n):
 
 # "les_4_task_2.alg2(1000)"
 # 1000 loops, best of 5: 244 usec per loop
+
+# "les_4_task_2.alg2(2000)"
+# 1000 loops, best of 5: 830 usec per loop
+
+# "les_4_task_2.alg2(5000)"
+# 1000 loops, best of 5: 2.21 msec per loop
+
+
+
+# ************************************************* Вывод **************************************************************
+# Первый алгоритм имеет эмпирическую сложность O(n^2). По времени работы алгоритма также видно, что работает он
+# достаточно медленно на большом n начиная с 1000. Второй алгоритм (решето Эратосфена) имеет эмпирическую сложность
+# O(nlog(log(n))) и работает быстрее первого. Он делает меньше проверок внутри внутреннего цикла, засчет этого
+# и происходит выигрыш по времени.
